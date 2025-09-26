@@ -1,10 +1,12 @@
 'use client'
-import { useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import Button from "../components/Button"
 import { TiLocationArrow } from "react-icons/ti"
 import { useGSAP } from "@gsap/react"
 import gsap from "gsap"
+import { ScrollTrigger } from "gsap/all"
 
+gsap.registerPlugin(ScrollTrigger)
 
 export default function Hero() {
 
@@ -20,8 +22,9 @@ export default function Hero() {
   const totalVideos = 4;
   const nextVdRef = useRef<HTMLVideoElement |null>(null)
 
-  const handleVideoLoad = ()=>{
-    setLoadedVideos((prev)=>prev+1)
+  const handleVideoLoad = (e: React.SyntheticEvent<HTMLVideoElement>) => {
+    console.log("Loaded:", e.currentTarget.src)
+    setLoadedVideos((prev) => prev + 1)
   }
 
   const upcomingVideoIndex = (currentIndex%totalVideos)+1;
@@ -32,6 +35,13 @@ export default function Hero() {
     setcurrentIndex(upcomingVideoIndex)
   }
 
+  useEffect(() => {
+    console.log('hello',LoadedVideos,totalVideos)
+    if(LoadedVideos >=  totalVideos-1){
+      setisLoading(false)
+    }
+  }, [LoadedVideos])
+  
 
   useGSAP(()=>{
    if(hasClicked){
@@ -55,12 +65,37 @@ export default function Hero() {
    }
   },{dependencies:[currentIndex],revertOnUpdate:true})
 
-
+  useGSAP(()=>{
+    gsap.set('#video-frame',{
+      clipPath:'polygon(15% 0%, 72% 0%, 90% 90%, 0% 100%)',
+      borderRadius:'0 0 40% 10%'
+    })
+    gsap.from('#video-frame',{
+      clipPath:'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)',
+      borderRadius:' 0 0 0 0',
+      ease:'power1.inOut',
+      scrollTrigger:{
+        trigger:'#video-frame',
+        start:'center center',
+        end:'bottom center',
+        scrub:true,
+      }
+    })
+  })
 
   const getVideoSrc = (index:number) => `videos/hero-${index}.mp4`
 
   return (
     <div  className="relative h-dvh w-screen overflow-x-hidden">
+      {isLoading &&(
+        <div className="flex-center fixed z-[100] h-dvh w-screen overflow-hidden bg-violet-50">
+          <div className="three-body">
+            <div className="three-body__dot"></div>
+            <div className="three-body__dot"></div>
+            <div className="three-body__dot"></div>
+          </div>
+        </div>
+      )}
       <div id="video-frame" className=" relative z-10 h-dvh w-screen overflow-hidden rounded-lg bg-blue-75">
         <div>
           <div className="mask-clip-path absolute-center absolute z-50 size-64 cursor-pointer overflow-hidden rounded-lg">
@@ -71,9 +106,11 @@ export default function Hero() {
               loop
               autoPlay
               muted
+               preload="auto"
               id="current-video"
               className="size-64 origin-center scale-150 object-center object-cover"
-              onLoadedData={handleVideoLoad}
+              onLoadedData={(e) => handleVideoLoad(e)}
+              onCanPlay={(e) => handleVideoLoad(e)}
               />
             </div>
           </div>
@@ -83,14 +120,21 @@ export default function Hero() {
           loop
           muted
           autoPlay
+           preload="auto"
           id="next-video"
           className="absolute-center invisible absolute z-20 size-64 object-cover object-center"
+          onLoadedData={(e) => handleVideoLoad(e)}
+          onCanPlay={(e) => handleVideoLoad(e)}
           />
           <video
           src={getVideoSrc(currentIndex === totalVideos+1?1:currentIndex)}
-          autoPlay loop muted
+          autoPlay 
+          loop 
+          muted
+           preload="auto"
           className="absolute left-0 top-0 size-full object-cover object-center"
-          onLoadedData={handleVideoLoad}
+          onLoadedData={(e) => handleVideoLoad(e)}
+          onCanPlay={(e) => handleVideoLoad(e)}
           />
         </div>
          
@@ -108,7 +152,7 @@ export default function Hero() {
           </div>
          </div>
       </div>
-      <h1 className="special-font hero-heading absolute bottom-5 right-5 text-blue-75">
+      <h1 className="special-font hero-heading absolute bottom-5 right-5 ">
          G<b>a</b>ming
          </h1>
     </div>
