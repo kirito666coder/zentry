@@ -15,6 +15,7 @@ export default function Button({id,title,LeftIcon,RightIcon,className}: Props) {
         <span className="relative incline-flex overflow-hidden font-general text-xs uppercase">
         {title}
         </span>
+        {RightIcon}
     </button>
   )
 }

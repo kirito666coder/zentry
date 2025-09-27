@@ -85,6 +85,16 @@ export default function Hero() {
 
   const getVideoSrc = (index:number) => `videos/hero-${index}.mp4`
 
+  const [delaysrc, setdelaysrc] = useState<number>(1)
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setdelaysrc(
+       currentIndex
+      );
+    }, 1500);
+    
+    return () => clearTimeout(timer);
+  }, [currentIndex]);
   return (
     <div  className="relative h-dvh w-screen overflow-x-hidden">
       {isLoading &&(
@@ -127,13 +137,15 @@ export default function Hero() {
           onCanPlay={(e) => handleVideoLoad(e)}
           />
           <video
-          src={getVideoSrc(currentIndex === totalVideos+1?1:currentIndex)}
+          src={getVideoSrc(delaysrc)}
           autoPlay 
           loop 
           muted
            preload="auto"
           className="absolute left-0 top-0 size-full object-cover object-center"
-          onLoadedData={(e) => handleVideoLoad(e)}
+          onLoadedData={(e) => {handleVideoLoad(e)
+            e.currentTarget.currentTime = 1.6; 
+          }}
           onCanPlay={(e) => handleVideoLoad(e)}
           />
         </div>
