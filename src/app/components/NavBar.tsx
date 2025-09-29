@@ -4,6 +4,8 @@ import { useEffect, useRef, useState } from "react"
 import Button from "./Button"
 import { TiLocationArrow } from "react-icons/ti"
 import Link from "next/link"
+import  {useWindowScroll} from 'react-use'
+import gsap from "gsap"
 
 const navItems = ['Nexus','Vault','Prologue','About','Contact']
 
@@ -11,9 +13,38 @@ export default function NavBar() {
 
     const [isAudioPlaying, setisAudioPlaying] = useState<boolean>(false)
     const [isIndicatorActive, setisIndicatorActive] = useState<boolean>(false)
+    const [LastScrollY, setLastScrollY] = useState<number>(0)
+    const [isNAveVisible, setisNAveVisible] = useState<boolean>(true)
     
     const navContainerRef = useRef<HTMLDivElement|null>(null)
     const audioElementRef = useRef<HTMLAudioElement|null>(null)
+
+    const {y:currentScrollY} = useWindowScroll()
+
+    useEffect(() => {
+          if(currentScrollY === 0){
+            setisNAveVisible(true)
+            navContainerRef.current?.classList.remove('floating-nav')
+          }else if(currentScrollY >LastScrollY){
+            setisNAveVisible(false)
+            
+          }else if(currentScrollY < LastScrollY){
+            setisNAveVisible(true)
+            navContainerRef.current?.classList.add('floating-nav')
+          }
+           
+          setLastScrollY(currentScrollY)
+    }, [currentScrollY,LastScrollY])
+
+    useEffect(() => {
+      gsap.to(navContainerRef.current, {
+        y:isNAveVisible?0:-100,
+        opacity:isNAveVisible?1:0,
+        duration:0.2
+      })
+    }, [isNAveVisible])
+    
+    
 
     const toggleAudioIndicator = ()=>{
       setisAudioPlaying(!isAudioPlaying)
@@ -31,7 +62,7 @@ export default function NavBar() {
     
 
   return (
-    <div ref={navContainerRef} className="fixed inset-x-0 top-0 z-50 h-16 border-none transition-all duration-700 sm:inset-x-6">
+    <div ref={navContainerRef} className="fixed inset-x-2 top-2 z-50 h-16 border-none transition-all duration-700 sm:inset-x-6">
       <header className="absolute top-1/2 w-full -translate-y-1/2 ">
       <nav className="flex size-full items-center justify-between p-4">
        <div className="flex items-center gap-7 ">
