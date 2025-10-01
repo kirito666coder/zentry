@@ -2,6 +2,7 @@ import NavBar from "../components/NavBar";
 import About from "./About";
 import Features from "./Features";
 import Hero from "./Hero";
+import Story from "./Story";
 
 
 export default function page() {
@@ -11,6 +12,7 @@ export default function page() {
       <Hero/>
       <About/>
       <Features/>
+      <Story/>
     </main>
   )
 }
