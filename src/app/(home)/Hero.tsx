@@ -23,7 +23,6 @@ export default function Hero() {
   const nextVdRef = useRef<HTMLVideoElement |null>(null)
 
   const handleVideoLoad = (e: React.SyntheticEvent<HTMLVideoElement>) => {
-    console.log("Loaded:", e.currentTarget.src)
     setLoadedVideos((prev) => prev + 1)
   }
 
@@ -36,7 +35,6 @@ export default function Hero() {
   }
 
   useEffect(() => {
-    console.log('hello',LoadedVideos,totalVideos)
     if(LoadedVideos >=  totalVideos-1){
       setisLoading(false)
     }
@@ -97,15 +95,15 @@ export default function Hero() {
   }, [currentIndex]);
   return (
     <div  className="relative h-dvh w-screen overflow-x-hidden">
-      {/* {isLoading &&(
-        <div className="flex-center fixed z-[0] h-dvh w-screen overflow-hidden bg-violet-50">
+      {isLoading &&(
+        <div className="flex-center fixed z-[100] h-dvh w-screen overflow-hidden bg-violet-50">
           <div className="three-body">
             <div className="three-body__dot"></div>
             <div className="three-body__dot"></div>
             <div className="three-body__dot"></div>
           </div>
         </div>
-      )} */}
+      )}
       <div id="video-frame" className=" relative z-10 h-dvh w-screen overflow-hidden rounded-lg bg-blue-75">
         <div>
           <div className="mask-clip-path absolute-center absolute z-50 size-64 cursor-pointer overflow-hidden rounded-lg">
