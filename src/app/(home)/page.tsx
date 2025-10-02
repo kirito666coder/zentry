@@ -1,5 +1,7 @@
+import Footer from "../components/Footer";
 import NavBar from "../components/NavBar";
 import About from "./About";
+import Contact from "./Contact";
 import Features from "./Features";
 import Hero from "./Hero";
 import Story from "./Story";
@@ -13,6 +15,8 @@ export default function page() {
       <About/>
       <Features/>
       <Story/>
+      <Contact/>
+      <Footer/>
     </main>
   )
 }
