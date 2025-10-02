@@ -2,7 +2,7 @@
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import Image from "next/image";
-import AnimatedTital from "../components/AnimatedTital";
+import AnimatedTital from "@/components/AnimatedTital";
 
 
 export default function About() {

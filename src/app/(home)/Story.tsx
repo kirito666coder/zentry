@@ -1,10 +1,10 @@
 'use client'
 import Image from "next/image";
-import AnimatedTital from "../components/AnimatedTital";
+import AnimatedTital from "@/components/AnimatedTital";
 import { MouseEvent, useRef } from "react";
 import gsap from "gsap";
-import RoundedCorners from "../components/RoundedCorners";
-import Button from "../components/Button";
+import RoundedCorners from "@/components/RoundedCorners";
+import Button from "@/components/Button";
 
 
 export default function Story() {

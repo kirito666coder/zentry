@@ -1,5 +1,6 @@
-import Footer from "../components/Footer";
-import NavBar from "../components/NavBar";
+
+import Footer from "@/components/Footer";
+import NavBar from "@/components/NavBar";
 import About from "./About";
 import Contact from "./Contact";
 import Features from "./Features";

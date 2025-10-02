@@ -1,6 +1,6 @@
 import { TiLocationArrow } from "react-icons/ti"
-import { BentoTilt } from "../components/Bento/BentoTilt"
-import { BentoCard } from "../components/Bento/BentoCard"
+import { BentoTilt } from "@/components/Bento/BentoTilt"
+import { BentoCard } from "@/components/Bento/BentoCard"
 
 
 
