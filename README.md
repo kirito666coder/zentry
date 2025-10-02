@@ -1,36 +1,55 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+<div align="center">
 
-## Getting Started
+# Zentry — Metagame Layer Experience
 
-First, run the development server:
+</div>
+
+> Enter the Metagame Layer — a sleek, animated app uniting UI, motion, and immersive sections inspired by Zentry.
+
+## Live Demo
+
+- Click here to visit the live site: [Click here](https://zentry-kappa-jet.vercel.app/)
+
+<a href="https://zentry-kappa-jet.vercel.app/">
+  <img alt="Website preview" src="./public/img/web.png" width="100%" />
+</a>
+
+## 404 Page Preview
+
+Custom, stylized 404 experience:
+
+<img alt="404 preview" src="./public/img/404.png" width="100%" />
+
+## Tech Stack
+
+- <img src="https://cdn.simpleicons.org/nextdotjs/000000" width="20" height="20" style="vertical-align:middle;margin-right:6px;" /> Next.js 15 (App Router, Turbopack)
+- <img src="https://cdn.simpleicons.org/react/61DAFB" width="20" height="20" style="vertical-align:middle;margin-right:6px;" /> React 19
+- <img src="https://cdn.simpleicons.org/typescript/3178C6" width="20" height="20" style="vertical-align:middle;margin-right:6px;" /> TypeScript 5
+- <img src="https://cdn.simpleicons.org/tailwindcss/38B2AC" width="20" height="20" style="vertical-align:middle;margin-right:6px;" /> Tailwind CSS 4 (via `@tailwindcss/postcss`)
+- <img src="https://cdn.simpleicons.org/greensock/88CE02" width="20" height="20" style="vertical-align:middle;margin-right:6px;" /> GSAP 3 + `@gsap/react` for animations
+- <img src="https://cdn.simpleicons.org/vercel/000000" width="20" height="20" style="vertical-align:middle;margin-right:6px;" /> Deployed on Vercel
+
+## Features
+
+- Animated hero and section transitions powered by GSAP
+- Bento-style content grid with subtle tilt and hover effects
+- Custom fonts and theme tokens in `src/app/globals.css`
+- Optimized assets in `public/` (images, videos, audio)
+- Responsive, mobile-first design
+
+## Local Development
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open `http://localhost:3000` in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Scripts
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- `dev`: Run local dev server with Turbopack
+- `build`: Production build with Turbopack
+- `start`: Start production server
+- `lint`: Run ESLint
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
